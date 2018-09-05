@@ -10,13 +10,14 @@ class Minitest::NoAssertionsTest < Minitest::Test
 
   def test_detect_no_assertions_test
     e = assert_raises StandardError do
-      fail_test = Class.new(Minitest::Test) do
-        def fail
-        end
-      end
-      Minitest::Runnable.run_one_method(fail_test, :fail, self.reporter)
+      Minitest::Runnable.run_one_method(DummyTest, :fail, self.reporter)
     end
 
-    assert_equal "Minitest::Result#fail has no assertions!!", e.message
+    assert_equal "DummyTest#fail has no assertions!!", e.message
+  end
+end
+
+class DummyTest < Minitest::Test
+  def fail
   end
 end
