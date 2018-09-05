@@ -9,7 +9,7 @@ module Minitest
       end
 
       def record(result)
-        if result.assertions.zero?
+        if result.passed? && result.assertions.zero?
           msg = "%s#%s has no assertions!!" % [result.klass, result.name]
           raise StandardError, msg
         end
