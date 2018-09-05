@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    minitest-no_assertions (0.1.0)
+    minitest-no_assertions (0.1.1)
       minitest
 
 GEM
