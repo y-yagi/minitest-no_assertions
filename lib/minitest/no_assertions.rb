@@ -20,7 +20,7 @@ module Minitest
 
       def record(result)
         if result.passed? && result.assertions.zero?
-          msg = "%s has no assertions!!" % [result.location]
+          msg = "%s has no assertions!! [%s]" % [result.location, result.source_location.join(":")]
           warn(msg)
         end
       end

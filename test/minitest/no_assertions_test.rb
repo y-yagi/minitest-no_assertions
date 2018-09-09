@@ -22,7 +22,8 @@ class Minitest::NoAssertionsTest < Minitest::Test
       Minitest::Runnable.run_one_method(DummyTest, :no_assertion, reporter)
     end
 
-    assert_equal "DummyTest#no_assertion has no assertions!!", e.message
+    assert_match "DummyTest#no_assertion has no assertions!!", e.message
+    assert_match "test/minitest/no_assertions_test.rb:47", e.message
   end
 
   def test_respect_original_exception
@@ -35,7 +36,8 @@ class Minitest::NoAssertionsTest < Minitest::Test
     Minitest::NoAssertions.behavior = :stderr
 
     err = capture_stderr { Minitest::Runnable.run_one_method(DummyTest, :no_assertion, reporter) }
-    assert_equal "DummyTest#no_assertion has no assertions!!\n",err
+    assert_match "DummyTest#no_assertion has no assertions!!", err
+    assert_match "test/minitest/no_assertions_test.rb:47", err
   ensure
     Minitest::NoAssertions.behavior = @original_behavior
   end
